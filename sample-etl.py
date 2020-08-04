@@ -16,13 +16,13 @@ sc._jsc.hadoopConfiguration().set('fs.s3a.aws.credentials.provider',
 
 #data_df = spark.read.options(header='True',inferSchema='True').csv(file)
 
-data_df = spark.read.csv("s3a://s3-phc-poc-02-sample-etl/2020/08/04/06:19/Raw/criteo/day_1.gz") 
+data_df = spark.read.csv("s3a://s3-phc-poc-02-sample-etl/2020/08/*.gz") 
 print('10 rows to display:')
 data_df.show(10)
 
 
 data_df.rdd.getNumPartitions()
-data_df = data_df.repartition(100)
+data_df = data_df.repartition(200)
 count=data_df.count()
 print('Number of rows: ',count)
 
